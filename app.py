@@ -28,7 +28,6 @@ def get_data():
 def receive_data(data):
     print("Received: %s" % str(data))
     server_queue.put(str(data))
-    print(str(server_queue))
 
 #@socketio.on('bbb')
 #def send_data():
