@@ -18,9 +18,8 @@ def get_data():
     return Response(request.args.get("test"))
 
 @socketio.on('aaa')
-def test_connect():
-    print("Welcome, aaa received")
-    emit('aaa_response', {'data': 'Server'})
+def receive_data(data):
+    print("Received: %s" % str(data))
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
