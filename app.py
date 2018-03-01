@@ -27,7 +27,7 @@ def get_data():
 @socketio.on('aaa')
 def receive_data(data):
     print("Received: %s" % str(data))
-    server_queue.put(str(data))
+    server_queue.put(data['data'])
 
 t = None
 @socketio.on('bbb', '/recv')
