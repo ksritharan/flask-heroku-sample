@@ -29,10 +29,19 @@ def receive_data(data):
     print("Received: %s" % str(data))
     server_queue.put(str(data))
 
-#@socketio.on('bbb')
-#def send_data():
-#    data = server_queue.get(True)
-#    emit('bbb_response', data)
+t = None
+@socketio.on('bbb', '/recv')
+def send_data():
+    global t
+    if t is None:
+        t = socketio.start_background_task(target=phone_handler)
+
+def phone_handler():
+    try:
+        while 1:
+            data = server_queue.get(True)
+            socketio.emit("bbb_response",
+                    {'data': data}, namespace='/recv')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
