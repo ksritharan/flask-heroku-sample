@@ -14,7 +14,7 @@ def index():
 @app.route('/data', methods=['GET'])
 def get_data():
     print('Received data from client: %s' % request.data)
-    return Response('')
+    return Response(request.data)
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
