@@ -13,8 +13,8 @@ def index():
 
 @app.route('/data', methods=['GET'])
 def get_data():
-    print('Received data from client: %s' % request.get_json())
-    return Response(request.get_json())
+    print('Received data from client: %s' % request.args.get("test"))
+    return Response(request.args.get("test"))
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
