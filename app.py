@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
 from flask_socketio import SocketIO, emit
 app = Flask(__name__)
 
@@ -11,7 +11,7 @@ def index():
   #return render_template('index.html', users=User.query.all())
   return render_template('index.html')
 
-@app.route('/data', methods=['POST'])
+@app.route('/data', methods=['GET'])
 def get_data():
     print('Received data from client: %s' % request.data)
     return Response('')
